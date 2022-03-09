@@ -1,6 +1,6 @@
 <template>
     <div class="HomePage">
-        <div class="HomePageContent"> 主页</div>
+        <div class="HomePageContent"> 主页显示</div>
  
     </div>
 </template>
