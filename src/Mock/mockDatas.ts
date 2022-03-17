@@ -25,8 +25,27 @@ Mock.mock(
     }
 )
 
+Mock.mock(
+  '/mock/register',
+  'post',
+  (req:any) => {
+
+      const { password, user,passwordCheck,code } = JSON.parse(req.body)
+      if (user!="") {
+          return { success: true,code:200}
+
+
+      } else {
+          return { success: false,code:400 }
+      }
+  }
+)
+
+
+
+
 const columnsList = [
-    { title: "用户Id", width: 300, dataIndex: "Id", key: "name" },
+    { title: "用户Id", width: 100, dataIndex: "Id", key: "name" },
     { title: "用户名",sorter: true, width: 100, dataIndex: "Name", key: "age" },
     { title: "密码", width: 100, dataIndex: "password", key: "1", },
     { title: "性别", filters: [

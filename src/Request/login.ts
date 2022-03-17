@@ -2,7 +2,7 @@
 
 
 import instance from './request'
-import {Ilogin} from '../TypeInterface/loginInterface'
+import {Ilogin,IFormRegisterState} from '../TypeInterface/loginInterface'
 
 
 
@@ -13,6 +13,9 @@ export function login(res:Ilogin ):any {
         data:res
     })
 }
+
+
+
 export function loginGet(res:Ilogin ):any {
     return instance({
         url: '/login',
@@ -21,7 +24,13 @@ export function loginGet(res:Ilogin ):any {
     })
 }
 
-
+export function register(res:IFormRegisterState ):any {
+    return instance({
+        url: '/register',
+        method: 'post',
+        data:res
+    })
+}
 
 // export function getGoodsByType_Mock(type = "sales", page = 1) {
 //     return request({

@@ -5,10 +5,10 @@
     :UserData="UserDataEntityState"
   ></UserListQueryHeader>
 
-  
+
 
   <div id="userList">
-    <a-table bordered    :rowClassName="(record, index) => (index % 2 === 1 ? 'table-striped' : null)"
+    <a-table bordered    :rowClassName="(index:any) => (index % 2 === 1 ? 'table-striped' : null)"
      
       id="yy"
       :columns="UserListColumns"
@@ -22,15 +22,21 @@
       :pagination="false"
     >
       <template #action>
-        <a
+        <!-- <a
           style="
             color: rgba(18, 96, 214, 0.733);
             font-size: 16px;
             font-weight: 800;
           "
-          ><edit-two-tone /></a
-        >
 
+          
+          ><edit-two-tone mark="edit" /></a
+        > -->
+<edit-two-tone  style="
+            color: rgba(18, 96, 214, 0.733);
+            font-size: 16px;
+            font-weight: 800;
+          " mark="edit" /> 
         <a-popconfirm
           placement="leftTop"
           title="确要删除此项？"
@@ -39,7 +45,7 @@
           @confirm="confirm"
           @cancel="cancel"
         >
-          <a
+          <!-- <a
             style="
               color: rgba(255, 81, 0, 0.733);
               font-size: 16px;
@@ -48,7 +54,13 @@
             "
             href="#"
             ><delete-two-tone /></a
-          >
+          > -->
+          <delete-two-tone style="
+              color: rgba(255, 81, 0, 0.733);
+              font-size: 16px;
+              font-weight: 800;
+              margin-left: 9px;
+            " />
         </a-popconfirm>
 
        
@@ -82,7 +94,7 @@
 
   <UserListModal
     :visiblea="visible"
-    :modalTitlea="modalTitle"
+    :modalTitles="modalTitle"
     :UserData="UserDataEntityState"
     @closeMoadl="closeMoadl"
   />
@@ -144,7 +156,7 @@ export default defineComponent({
       UserDataEntityState.EditData.email = "";
       UserDataEntityState.EditData.level = "";
       UserDataEntityState.EditData.desc = "";
-      console.log("showCreateModal", visible.value);
+      console.log("showCreateModal", modalTitle.value);
     };
 
     const closeMoadl = () => {
@@ -192,7 +204,7 @@ export default defineComponent({
     };
     watch(pageSize, () => {
       console.log("pageSize", pageSize.value);
-    });
+    }); 
     watch(current1, () => {
       GetUserDatas({
         current: current1.value,
@@ -248,7 +260,9 @@ export default defineComponent({
     const rowActionClick = (record: any) => {
       return {
         onClick: (event: any) => {
-          if (event.target.innerText == "编辑") {
+          //console.log(event.target.parentNode.parentNode.getAttribute("aria-label"))
+           console.log(event.target.parentNode.getAttribute("data-icon"))
+          if (event.target.parentNode.getAttribute("data-icon") == "edit") {
             console.log(event);
             console.log(record);
             const Id = record.Id;
@@ -272,9 +286,9 @@ export default defineComponent({
             visible.value = true;
             modalTitle.value = "编辑【用户列表】";
           }
-          if (event.target.innerText == "删除") {
+          if (event.target.parentNode.getAttribute("data-icon") == "delete") {
             // console.log(event);
-            // console.log(record);
+             console.log(record.Id);
             const Id = record.Id;
             deleteMark.value = Id;
             //  const index= (ListDatas.data).findIndex((i:any)=>i.Id==Id);

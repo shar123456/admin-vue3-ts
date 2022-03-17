@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import {login} from '../Request/login'
+import {login,register} from '../Request/login'
 export default createStore({
   state: {
     TOKEN: ""
@@ -13,9 +13,7 @@ export default createStore({
      LoginSys({commit},payLoad){
      return new Promise((resolve)  => {
         const {user,password}=payLoad;
-        setTimeout(  ()  => {
-               
-         
+        setTimeout(  ()  => {          
            login({user,password}).then((res:any)=>{
               if (!res.success) {
                 resolve(false);
@@ -28,15 +26,27 @@ export default createStore({
               console.log(err);
               resolve(false);
             });
-            
-            
-     
-          
-          
-
-        }, 500);
+        }, 200);
       });
-    }
+    },
+    RegisterSys({commit},payLoad){
+      return new Promise((resolve)  => {
+         
+         setTimeout(  ()  => {          
+          register(payLoad).then((res:any)=>{
+               if (!res.success) {
+                 resolve(false);
+               } else {
+                
+                 resolve(true);
+                }
+             }).catch((err:any)=>{
+               console.log(err);
+               resolve(false);
+             });
+         }, 500);
+       });
+     }
   },
   modules: {
   }

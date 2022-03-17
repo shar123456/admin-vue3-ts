@@ -23,13 +23,13 @@ export default defineComponent({
 
 <style scoped>
 .HomePage{
-    border:1px solid red;
+    border:0px solid red;
     box-sizing: border-box;
-   padding:1px;
+   padding:0px;
     
     
        
-     height: calc(100vh - 100px);
+     height: calc(100vh - 92px);
    overflow: auto;
     
     
@@ -40,7 +40,7 @@ export default defineComponent({
    
       min-width:1000px;
      min-height: 675px;
-      height: calc(100vh - 109px);
+      height: calc(100vh - 92px);
     /* background-image: url("../../assets/bgHome.png");
     background-repeat: no-repeat; 
     background-origin: border-box;

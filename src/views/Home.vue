@@ -321,7 +321,7 @@ openKeys.value=["sub1"]
       if (collapsed.value) {
         setTimeout(() => {
           titleTxt.value = "Motic 麦克奥迪";
-        }, 100);
+        }, 500);
 
         titleTxt1.value = "titleTxt12";
       } else {

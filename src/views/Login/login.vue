@@ -45,6 +45,15 @@
                   >
                     登录
                   </a-button>
+                   <a-button
+                   style="margin-left:3px"
+                    type="primary"
+                   
+                    size="large"
+                   @click="registerBtn"
+                  >
+                    注册
+                  </a-button>
                 </a-form-item>
               </a-form>
             </div>
@@ -98,7 +107,7 @@ export default defineComponent({
       if (!result) {
         message.error("用户名或密码不正确.");
       } else {
-       router.push({path: '/Home/MainPage', query: {selected: "1"}});
+       router.push({path: '/Home/HomePage', query: {selected: "1"}});
       }
       spinning.value = !spinning.value;
     };
@@ -106,12 +115,16 @@ export default defineComponent({
       console.log(errors);
       console.log(2);
     };
+    const registerBtn=()=>{
+       router.push({path: '/register', query: {selected: "1"}});
+    }
     return {
       formState,
       handleFinish,
       handleFinishFailed,
       spinning,
       delayTime,
+      registerBtn
     };
   },
 });

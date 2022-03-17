@@ -6,7 +6,7 @@
     wrapClassName="UserList"
     v-model:visible="visible"
     width="1000px"
-    :title="modalTitle"
+    :title="modalTitlee"
     @Cancel="onCancel"
       @ok="handleOk"
   >
@@ -106,13 +106,13 @@ import {defineComponent, reactive, toRefs,ref,onMounted,watch } from 'vue'
 import { UserDataEntity,IUserInfo } from "../TypeInterface/userInterface";
 export default defineComponent({
       props: { UserData: UserDataEntity,
-       visiblea:Boolean,modalTitlea: String,},
+       visiblea:Boolean,modalTitles: String,},
     setup (props,context) {
         const state = reactive({
             count: 0,
         })
           let visible = ref<boolean>(props.visiblea);
-          let modalTitle = ref<string|undefined>(props.modalTitlea);
+          let modalTitlee = ref<string|undefined>(props.modalTitles);
            const EditData:IUserInfo=props.UserData?.EditData as IUserInfo;
           
 
@@ -138,9 +138,17 @@ export default defineComponent({
             visible.value=newValue;
       }
     );
-    
+     watch(
+      () => props.modalTitles,
+      (newValue) => {
+           
+         console.log(newValue)
+          
+            modalTitlee.value=newValue;
+      }
+    );
         return {
-            ...toRefs(state),visible,modalTitle,handleOk,EditData,onCancel
+            ...toRefs(state),visible,modalTitlee,handleOk,EditData,onCancel
         }
     }
 })

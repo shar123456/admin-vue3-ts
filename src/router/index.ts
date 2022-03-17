@@ -86,7 +86,11 @@ const routes: Array<any> = [
     name: 'login',
     component: () => import(/* webpackChunkName: "about" */ '../views/Login/login.vue')
   },
-  
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Login/register.vue')
+  },
 ]
 
 const router = createRouter({
@@ -95,7 +99,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-  if(to.path==="/login")
+  console.log(to.path)
+  if(to.path==="/login"||to.path==="/register")
   {
     next();
   }
